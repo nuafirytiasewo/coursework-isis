@@ -16,7 +16,9 @@ namespace coursework
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { 
+                    //при первом входе запускать форму с входом в аккаунт
+                    controller = "MyAccount", action = "Login", id = UrlParameter.Optional }
             );
         }
     }

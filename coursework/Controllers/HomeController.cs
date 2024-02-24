@@ -10,7 +10,7 @@ namespace coursework.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
+            ViewBag.Title = "Домашняя страница";
 
             return View();
         }
