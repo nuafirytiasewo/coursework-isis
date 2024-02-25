@@ -27,12 +27,15 @@ namespace coursework.Controllers
                 //если нашли то
                 if (result.Count() != 0)
                 {
+                    //запись в сессию(куки) переменной с логином
+                    Session["Username"] = user.Username;
+                    //перенаправление на домашнюю страницу
                     return RedirectToAction("Index", "Home");
                 }
                 //если не нашли то выводим ошибку
                 else 
                 { 
-                    TempData["msg"] = "Неправильно ввели"; 
+                    TempData["msg"] = "Неверные логин или пароль!"; 
                 }
             }
             return View();
@@ -40,7 +43,8 @@ namespace coursework.Controllers
 
         public ActionResult Logout()
         {
-            return View();
+            Session.Clear();
+            return View("Login");
         }
     }
 }
