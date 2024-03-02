@@ -24,8 +24,22 @@
                     <li>@Html.ActionLink("API", "Index", "Help", new { area = "" }, new { @class = "nav-link" })</li>
                 </ul>
                 <ul class="navbar-nav pull-right">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Выход", "Index", "Help", new { area = "" }, new { @class = "nav-link" })</li>
+                    @{
+                        try
+                        {
+                            //если в куки есть что то (способ на стороне клиента)
+                            if (Session["Username"] != null)
+                            {
+                                <li>@Html.ActionLink(Session["Username"].ToString(), "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                                <li>@Html.ActionLink("Выход", "Logout", "MyAccount", new { area = "" }, new { @class = "nav-link" })</li>
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
+                    }
+
                 </ul>
             </div>
         </div>
