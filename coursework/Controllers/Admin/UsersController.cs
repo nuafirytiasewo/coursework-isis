@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using coursework.Models;
 
-namespace coursework.Controllers
+namespace coursework.Controllers.Admin
 {
     public class UsersController : Controller
     {

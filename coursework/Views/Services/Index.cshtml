@@ -41,9 +41,9 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ServiceID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ServiceID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ServiceID })
+            @Html.ActionLink("Редактирование", "Edit", new { id = item.ServiceID }) |
+            @Html.ActionLink("Просмотр", "Details", new { id = item.ServiceID }) |
+            @Html.ActionLink("Удаление", "Delete", new { id = item.ServiceID })
         </td>
     </tr>
 }

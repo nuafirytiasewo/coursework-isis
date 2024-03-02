@@ -1,21 +1,21 @@
 ﻿@model IEnumerable<coursework.Models.Clients>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Клиенты";
 }
 
-<h2>Index</h2>
+<h2>Клиенты</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить нового клиента", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.FullName)
+            ФИО
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ContactInfo)
+            Контактная информация
         </th>
         <th></th>
     </tr>
@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.ContactInfo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ClientID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ClientID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ClientID })
+            @Html.ActionLink("Редактирование", "Edit", new { id=item.ClientID }) |
+            @Html.ActionLink("Просмотр", "Details", new { id=item.ClientID }) |
+            @Html.ActionLink("Удаление", "Delete", new { id=item.ClientID })
         </td>
     </tr>
 }

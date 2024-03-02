@@ -1,35 +1,27 @@
 ﻿<main>
     <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="aspnetTitle">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+        <h1 id="aspnetTitle">Справочник службы быта</h1>
+        @*отображаем приветствие*@
+        <p class="lead">@ViewBag.Message Вы попали на страницу управления службой быта. Эта система позволяет вам быстро и удобно находить необходимую информацию о исполнителях услуг.</p>
     </section>
-    @*отображаем приветствие*@
-    <div>
-        @if (!string.IsNullOrEmpty(ViewBag.Message))
-        {
-            <p>@ViewBag.Message</p>
-        }
-    </div>
     <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Добро пожаловать</h2>
-            <p>
-                ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-                a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-                is an ideal platform for building RESTful applications on the .NET Framework.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
+        <section class="col-md-4" aria-labelledby="tablesTitle">
+            <h2 id="tablesTitle">Таблицы</h2>
+            <p>Здесь хранятся таблицы к базе данных, чтобы можно было проще управлять ими (создавать/редактировать/удалять записи - CRUD).</p>
+            <p><a class="btn btn-outline-dark" href="../Clients/Index">Клиенты &raquo;</a></p>
+            <p><a class="btn btn-outline-dark" href="../Employees/Index">Работники &raquo;</a></p>
+            <p><a class="btn btn-outline-dark" href="../Requests/Index">Заявки &raquo;</a></p>
+            <p><a class="btn btn-outline-dark" href="../Services/Index">Услуги &raquo;</a></p>
+            <p><a class="btn btn-outline-dark" href="../ServiceCategories/Index">Категории услуг &raquo;</a></p>
         </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
+        <section class="col-md-4" aria-labelledby="selectionsTitle">
+            <h2 id="selectionsTitle">Выборки данных</h2>
+            <p>Здесь хранятся функции по селекции данных.</p>
+            <p><a class="btn btn-outline-dark" href="../Selections/Index_1">Задание 2.1 &raquo;</a></p>
+            <p><a class="btn btn-outline-dark" href="../Selections/Index_2">Задание 2.2 &raquo;</a></p>
+            <p><a class="btn btn-outline-dark" href="../Selections/Index_3">Задание 2.3 &raquo;</a></p>
+            <p><a class="btn btn-outline-dark" href="../Selections/Index_4">Задание 2.4 &raquo;</a></p>
+            <p><a class="btn btn-outline-dark" href="../Selections/Index_5">Задание 2.5 &raquo;</a></p>
         </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
-        </section>>
     </div>
 </main>
