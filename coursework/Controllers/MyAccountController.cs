@@ -23,19 +23,21 @@ namespace coursework.Controllers
             using (ADOModelDB db=new ADOModelDB())
             {
                 //ищем в базе данных такие же значения логина и пароля
-                var result = db.Users.Where(x => x.Username == user.Username && x.Password == user.Password);
+                var result = db.Users.FirstOrDefault(x => x.Username == user.Username && x.Password == user.Password);
                 //если нашли то
-                if (result.Count() != 0)
+                if (result != null)
                 {
-                    //запись в сессию(куки) переменной с логином
-                    Session["Username"] = user.Username;
+                    //запись в сессию(куки) переменной с логином и ролью
+                    Session["UserId"] = result.Id;
+                    Session["Username"] = result.Username;
+                    Session["RoleId"] = result.RoleId;
                     //перенаправление на домашнюю страницу
                     return RedirectToAction("Index", "Home");
                 }
                 //если не нашли то выводим ошибку
                 else 
                 { 
-                    TempData["msg"] = "Неверные логин или пароль!"; 
+                    TempData["msg"] = "Неправильный логин или пароль!"; 
                 }
             }
             return View();
@@ -43,8 +45,10 @@ namespace coursework.Controllers
 
         public ActionResult Logout()
         {
+            //очищаем куки
             Session.Clear();
-            return View("Login");
+            //перенаправление на страницу с входом
+            return RedirectToAction("Login", "MyAccount");
         }
     }
 }
