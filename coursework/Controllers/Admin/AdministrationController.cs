@@ -1,21 +1,23 @@
-﻿using coursework.Controllers.Helpers;
-using coursework.Models;
+﻿using coursework.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using coursework.Controllers.Helpers;
 
-namespace coursework.Controllers
+
+namespace coursework.Controllers.Admin
 {
-    public class HomeController : Controller
+    public class AdministrationController : Controller
     {
+        // GET: Administration
         public ActionResult Index()
         {
-            ViewBag.Title = "Домашняя страница";
+            ViewBag.Title = "Админ панель";
 
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
             {
                 return RedirectToAction("Login", "MyAccount");
             }

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<coursework.Models.Clients>
+
+@{
+    ViewBag.Title = "Клиенты";
+}
+
+<h2>Клиенты</h2>
+
+<p>
+    @Html.ActionLink("Добавить нового клиента", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            ФИО
+        </th>
+        <th>
+            Контактная информация
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContactInfo)
+        </td>
+        <td>
+            @Html.ActionLink("Редактирование", "Edit", new { id=item.ClientID }) |
+            @Html.ActionLink("Просмотр", "Details", new { id=item.ClientID }) |
+            @Html.ActionLink("Удаление", "Delete", new { id=item.ClientID })
+        </td>
+    </tr>
+}
+
+</table>
