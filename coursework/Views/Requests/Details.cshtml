@@ -1,41 +1,18 @@
 ﻿@model coursework.Models.Requests
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Просмотр";
 }
 
-<h2>Details</h2>
+<h2>Просмотр</h2>
 
 <div>
-    <h4>Requests</h4>
+    <h4>Заявка</h4>
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Clients.FullName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Clients.FullName)
-        </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Employees.FullName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Employees.FullName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Services.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Services.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.OpenDate)
+            Дата открытия заявки
         </dt>
 
         <dd>
@@ -43,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Status)
+            Статус заявки
         </dt>
 
         <dd>
@@ -51,16 +28,40 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            Описание
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Description)
         </dd>
 
+        <dt>
+            Клиент
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Clients.LastName)
+        </dd>
+
+        <dt>
+            Услуга
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Services.Name)
+        </dd>
+
+        <dt>
+            Работник
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employees.LastName)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.RequestID }) |
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.RequestID }) |
     @Html.ActionLink("Вернуться назад", "Index")
 </p>

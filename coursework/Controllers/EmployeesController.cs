@@ -17,7 +17,8 @@ namespace coursework.Controllers
         // GET: Employees
         public ActionResult Index()
         {
-            return View(db.Employees.ToList());
+            var employees = db.Employees.Include(e => e.Positions);
+            return View(employees.ToList());
         }
 
         // GET: Employees/Details/5
@@ -38,6 +39,7 @@ namespace coursework.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
+            ViewBag.PositionID = new SelectList(db.Positions, "Id", "Title");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace coursework.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeID,FullName,Position,Salary")] Employees employees)
+        public ActionResult Create([Bind(Include = "EmployeeID,LastName,FirstName,Patronymic,PositionID,Salary")] Employees employees)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace coursework.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.PositionID = new SelectList(db.Positions, "Id", "Title", employees.PositionID);
             return View(employees);
         }
 
@@ -70,6 +73,7 @@ namespace coursework.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.PositionID = new SelectList(db.Positions, "Id", "Title", employees.PositionID);
             return View(employees);
         }
 
@@ -78,7 +82,7 @@ namespace coursework.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeID,FullName,Position,Salary")] Employees employees)
+        public ActionResult Edit([Bind(Include = "EmployeeID,LastName,FirstName,Patronymic,PositionID,Salary")] Employees employees)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace coursework.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.PositionID = new SelectList(db.Positions, "Id", "Title", employees.PositionID);
             return View(employees);
         }
 

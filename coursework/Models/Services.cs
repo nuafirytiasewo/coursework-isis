@@ -15,7 +15,6 @@ namespace coursework.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ServiceID { get; set; }
 
         [StringLength(100)]

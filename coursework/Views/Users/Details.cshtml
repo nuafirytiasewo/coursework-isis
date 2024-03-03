@@ -1,25 +1,17 @@
 ﻿@model coursework.Models.Users
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Просмотр";
 }
 
-<h2>Details</h2>
+<h2>Просмотр</h2>
 
 <div>
-    <h4>Users</h4>
+    <h4>Пользователь</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Roles.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Roles.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
+            Логин
         </dt>
 
         <dd>
@@ -27,16 +19,48 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Password)
+            Пароль
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Password)
         </dd>
 
+        <dt>
+            Роль
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Roles.Name)
+        </dd>
+
+        <dt>
+            Фамилия
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            Имя
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            Отчество
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patronymic)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Вернуться назад", "Index")
 </p>

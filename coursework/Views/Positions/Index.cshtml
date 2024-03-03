@@ -1,10 +1,10 @@
-﻿@model IEnumerable<coursework.Models.Roles>
+﻿@model IEnumerable<coursework.Models.Positions>
 
 @{
-    ViewBag.Title = "Роли";
+    ViewBag.Title = "Должности";
 }
 
-<h2>Роли</h2>
+<h2>Должности</h2>
 
 <p>
     @Html.ActionLink("Добавить новую запись", "Create")
@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            Название
+            Название должности
         </th>
         <th>
-            Описание
+            Описание должности
         </th>
         <th></th>
     </tr>
@@ -23,7 +23,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.Title)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Description)

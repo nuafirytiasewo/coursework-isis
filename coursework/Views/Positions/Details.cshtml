@@ -1,4 +1,4 @@
-﻿@model coursework.Models.ServiceCategories
+﻿@model coursework.Models.Positions
 
 @{
     ViewBag.Title = "Просмотр";
@@ -7,19 +7,19 @@
 <h2>Просмотр</h2>
 
 <div>
-    <h4>Категория услуги</h4>
+    <h4>Должность</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            Название
+            Название должности
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Name)
+            @Html.DisplayFor(model => model.Title)
         </dd>
 
         <dt>
-            Описание
+            Описание должности
         </dt>
 
         <dd>
@@ -29,6 +29,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Редактировать", "Edit", new { id = Model.CategoryID }) |
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Вернуться назад", "Index")
 </p>

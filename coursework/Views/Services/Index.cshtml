@@ -1,36 +1,33 @@
 ﻿@model IEnumerable<coursework.Models.Services>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Услуги";
 }
 
-<h2>Index</h2>
+<h2>Услуги</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить новую запись", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ServiceCategories.Name)
+            Название
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Описание
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Цена
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Price)
+            Категория
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ServiceCategories.Name)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Name)
         </td>
@@ -41,9 +38,12 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.ActionLink("Редактирование", "Edit", new { id = item.ServiceID }) |
+            @Html.DisplayFor(modelItem => item.ServiceCategories.Name)
+        </td>
+        <td>
+            @Html.ActionLink("Редактировать", "Edit", new { id = item.ServiceID }) |
             @Html.ActionLink("Просмотр", "Details", new { id = item.ServiceID }) |
-            @Html.ActionLink("Удаление", "Delete", new { id = item.ServiceID })
+            @Html.ActionLink("Удалить", "Delete", new { id = item.ServiceID })
         </td>
     </tr>
 }

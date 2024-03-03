@@ -39,8 +39,8 @@ namespace coursework.Controllers
         // GET: Requests/Create
         public ActionResult Create()
         {
-            ViewBag.ClientID = new SelectList(db.Clients, "ClientID", "FullName");
-            ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "FullName");
+            ViewBag.ClientID = new SelectList(db.Clients, "ClientID", "LastName");
+            ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "LastName");
             ViewBag.ServiceID = new SelectList(db.Services, "ServiceID", "Name");
             return View();
         }
@@ -59,8 +59,8 @@ namespace coursework.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.ClientID = new SelectList(db.Clients, "ClientID", "FullName", requests.ClientID);
-            ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "FullName", requests.EmployeeID);
+            ViewBag.ClientID = new SelectList(db.Clients, "ClientID", "LastName", requests.ClientID);
+            ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "LastName", requests.EmployeeID);
             ViewBag.ServiceID = new SelectList(db.Services, "ServiceID", "Name", requests.ServiceID);
             return View(requests);
         }
@@ -77,8 +77,8 @@ namespace coursework.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.ClientID = new SelectList(db.Clients, "ClientID", "FullName", requests.ClientID);
-            ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "FullName", requests.EmployeeID);
+            ViewBag.ClientID = new SelectList(db.Clients, "ClientID", "LastName", requests.ClientID);
+            ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "LastName", requests.EmployeeID);
             ViewBag.ServiceID = new SelectList(db.Services, "ServiceID", "Name", requests.ServiceID);
             return View(requests);
         }
@@ -96,8 +96,8 @@ namespace coursework.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.ClientID = new SelectList(db.Clients, "ClientID", "FullName", requests.ClientID);
-            ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "FullName", requests.EmployeeID);
+            ViewBag.ClientID = new SelectList(db.Clients, "ClientID", "LastName", requests.ClientID);
+            ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "LastName", requests.EmployeeID);
             ViewBag.ServiceID = new SelectList(db.Services, "ServiceID", "Name", requests.ServiceID);
             return View(requests);
         }

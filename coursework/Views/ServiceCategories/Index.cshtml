@@ -1,21 +1,21 @@
 ﻿@model IEnumerable<coursework.Models.ServiceCategories>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Категории услуг";
 }
 
-<h2>Index</h2>
+<h2>Категории услуг</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить новую запись", "Create")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            Название
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            Описание
         </th>
         <th></th>
     </tr>
@@ -29,9 +29,9 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.ActionLink("Редактирование", "Edit", new { id = item.CategoryID }) |
-            @Html.ActionLink("Просмотр", "Details", new { id = item.CategoryID }) |
-            @Html.ActionLink("Удаление", "Delete", new { id = item.CategoryID })
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.CategoryID }) |
+            @Html.ActionLink("Просмотр", "Details", new { id=item.CategoryID }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.CategoryID })
         </td>
     </tr>
 }

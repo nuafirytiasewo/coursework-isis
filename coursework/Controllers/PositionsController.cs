@@ -10,107 +10,107 @@ using coursework.Models;
 
 namespace coursework.Controllers
 {
-    public class ClientsController : Controller
+    public class PositionsController : Controller
     {
         private ADOModelDB db = new ADOModelDB();
 
-        // GET: Clients
+        // GET: Positions
         public ActionResult Index()
         {
-            return View(db.Clients.ToList());
+            return View(db.Positions.ToList());
         }
 
-        // GET: Clients/Details/5
+        // GET: Positions/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Clients clients = db.Clients.Find(id);
-            if (clients == null)
+            Positions positions = db.Positions.Find(id);
+            if (positions == null)
             {
                 return HttpNotFound();
             }
-            return View(clients);
+            return View(positions);
         }
 
-        // GET: Clients/Create
+        // GET: Positions/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Clients/Create
+        // POST: Positions/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ClientID,LastName,FirstName,Patronymic,ContactInfo")] Clients clients)
+        public ActionResult Create([Bind(Include = "Id,Title,Description")] Positions positions)
         {
             if (ModelState.IsValid)
             {
-                db.Clients.Add(clients);
+                db.Positions.Add(positions);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(clients);
+            return View(positions);
         }
 
-        // GET: Clients/Edit/5
+        // GET: Positions/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Clients clients = db.Clients.Find(id);
-            if (clients == null)
+            Positions positions = db.Positions.Find(id);
+            if (positions == null)
             {
                 return HttpNotFound();
             }
-            return View(clients);
+            return View(positions);
         }
 
-        // POST: Clients/Edit/5
+        // POST: Positions/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ClientID,LastName,FirstName,Patronymic,ContactInfo")] Clients clients)
+        public ActionResult Edit([Bind(Include = "Id,Title,Description")] Positions positions)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(clients).State = EntityState.Modified;
+                db.Entry(positions).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(clients);
+            return View(positions);
         }
 
-        // GET: Clients/Delete/5
+        // GET: Positions/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Clients clients = db.Clients.Find(id);
-            if (clients == null)
+            Positions positions = db.Positions.Find(id);
+            if (positions == null)
             {
                 return HttpNotFound();
             }
-            return View(clients);
+            return View(positions);
         }
 
-        // POST: Clients/Delete/5
+        // POST: Positions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Clients clients = db.Clients.Find(id);
-            db.Clients.Remove(clients);
+            Positions positions = db.Positions.Find(id);
+            db.Positions.Remove(positions);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

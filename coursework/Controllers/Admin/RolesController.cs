@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using coursework.Models;
 
-namespace coursework.Controllers
+namespace coursework.Controllers.Admin
 {
     public class RolesController : Controller
     {
@@ -46,7 +46,7 @@ namespace coursework.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name")] Roles roles)
+        public ActionResult Create([Bind(Include = "Id,Name,Description")] Roles roles)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace coursework.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Name")] Roles roles)
+        public ActionResult Edit([Bind(Include = "Id,Name,Description")] Roles roles)
         {
             if (ModelState.IsValid)
             {

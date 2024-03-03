@@ -15,16 +15,22 @@ namespace coursework.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int EmployeeID { get; set; }
 
-        [StringLength(100)]
-        public string FullName { get; set; }
+        [StringLength(40)]
+        public string LastName { get; set; }
 
-        [StringLength(100)]
-        public string Position { get; set; }
+        [StringLength(40)]
+        public string FirstName { get; set; }
+
+        [StringLength(40)]
+        public string Patronymic { get; set; }
+
+        public int? PositionID { get; set; }
 
         public decimal? Salary { get; set; }
+
+        public virtual Positions Positions { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Requests> Requests { get; set; }
