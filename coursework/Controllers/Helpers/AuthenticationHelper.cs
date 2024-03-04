@@ -16,7 +16,7 @@ namespace coursework.Controllers.Helpers
             {
                 var userId = (int)session["UserId"]; // Получаем идентификатор пользователя из сессии
                 var userRole = db.Users.Find(userId)?.RoleId; // Находим пользователя в базе и получаем его роль
-                var userName = (string)session["username"]; // Получаем идентификатор пользователя и его роль из сессии
+                var userName = (string)session["Username"]; // Получаем идентификатор пользователя и его роль из сессии
                 
                 if (userRole != null)
                 {

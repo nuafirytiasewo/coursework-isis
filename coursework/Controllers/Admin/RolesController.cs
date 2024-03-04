@@ -117,7 +117,11 @@ namespace coursework.Controllers.Admin
             {
                 return RedirectToAction("Login", "MyAccount");
             }
-            
+            // Не даем изменять не админам
+            if ((int)Session["RoleId"] != 1)
+            {
+                return RedirectToAction("Index");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(roles).State = EntityState.Modified;
@@ -158,7 +162,11 @@ namespace coursework.Controllers.Admin
             {
                 return RedirectToAction("Login", "MyAccount");
             }
-            
+            // Не даем удалять не админам
+            if ((int)Session["RoleId"] != 1)
+            {
+                return RedirectToAction("Index");
+            }
             Roles roles = db.Roles.Find(id);
             db.Roles.Remove(roles);
             db.SaveChanges();
