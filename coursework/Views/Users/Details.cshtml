@@ -5,62 +5,70 @@
 }
 
 <h2>Просмотр</h2>
+@if (ViewBag.userRole == 1)
+{
+    <div>
+        <h4>Пользователь</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Логин
+            </dt>
 
-<div>
-    <h4>Пользователь</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Логин
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
+            <dt>
+                Пароль
+            </dt>
 
-        <dt>
-            Пароль
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+            <dt>
+                Роль
+            </dt>
 
-        <dt>
-            Роль
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Roles.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Roles.Name)
-        </dd>
+            <dt>
+                Фамилия
+            </dt>
 
-        <dt>
-            Фамилия
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+            <dt>
+                Имя
+            </dt>
 
-        <dt>
-            Имя
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            <dt>
+                Отчество
+            </dt>
 
-        <dt>
-            Отчество
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Patronymic)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Patronymic)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Вернуться назад", "Index")
-</p>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Вернуться назад", "Index")
+    </p>
+}
+else
+{
+    <div>
+        <p class="lead" style="color: red;">@ViewBag.Message</p>
+    </div>
+}

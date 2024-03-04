@@ -5,68 +5,77 @@
 }
 
 <h2>Удалить</h2>
+@if (ViewBag.userRole == 1)
+{
+    <h3>Вы действительно хотите удалить это?</h3>
+    <div>
+        <h4>Пользователь</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Логин
+            </dt>
 
-<h3>Вы действительно хотите удалить это?</h3>
-<div>
-    <h4>Пользователь</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Логин
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
+            <dt>
+                Пароль
+            </dt>
 
-        <dt>
-            Пароль
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+            <dt>
+                Роль
+            </dt>
 
-        <dt>
-            Роль
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Roles.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Roles.Name)
-        </dd>
+            <dt>
+                Фамилия
+            </dt>
 
-        <dt>
-            Фамилия
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+            <dt>
+                Имя
+            </dt>
 
-        <dt>
-            Имя
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            <dt>
+                Отчество
+            </dt>
 
-        <dt>
-            Отчество
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Patronymic)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Patronymic)
-        </dd>
+        </dl>
 
-    </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Удалить" class="btn btn-danger" /> |
-            @Html.ActionLink("Вернуться назад", "Index")
-        </div>
-    }
-</div>
+            <div class="form-actions no-color">
+                <input type="submit" value="Удалить" class="btn btn-danger" /> |
+                @Html.ActionLink("Вернуться назад", "Index")
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div>
+        <p class="lead" style="color: red;">@ViewBag.Message</p>
+    </div>
+}

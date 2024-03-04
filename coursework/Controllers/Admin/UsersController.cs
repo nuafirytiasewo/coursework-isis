@@ -71,7 +71,7 @@ namespace coursework.Controllers.Admin
         public ActionResult Create([Bind(Include = "Id,Username,Password,RoleId,LastName,FirstName,Patronymic")] Users users)
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
@@ -117,7 +117,7 @@ namespace coursework.Controllers.Admin
         public ActionResult Edit([Bind(Include = "Id,Username,Password,RoleId,LastName,FirstName,Patronymic")] Users users)
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
@@ -159,7 +159,7 @@ namespace coursework.Controllers.Admin
         public ActionResult DeleteConfirmed(int id)
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
