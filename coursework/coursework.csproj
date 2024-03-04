@@ -216,6 +216,7 @@
     <Compile Include="Controllers\Helpers\AuthenticationHelper.cs" />
     <Compile Include="Controllers\Admin\AdministrationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Models\ModelForSelection_2.cs" />
     <Compile Include="Models\ModelForSelection_1.cs" />
     <Compile Include="Controllers\MyAccountController.cs" />
     <Compile Include="Controllers\PositionsController.cs" />
@@ -365,6 +366,7 @@
     <Content Include="Views\Requests\Edit.cshtml" />
     <Content Include="Views\Requests\Index.cshtml" />
     <Content Include="Views\Selections\Index1.cshtml" />
+    <Content Include="Views\Selections\Index2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

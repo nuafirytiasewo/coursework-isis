@@ -1,0 +1,39 @@
+﻿﻿@model IEnumerable<coursework.Models.ModelForSelection_2>
+
+@{
+    ViewBag.Title = "Выбор информации о сотруднике с наивысшей зарплатой";
+}
+
+<h2>
+    Выбор информации о сотруднике с наивысшей зарплатой
+</h2>
+
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                ФИО сотрудника
+            </th>
+            <th>
+                Зарплата
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.LastName @item.FirstName @item.Patronymic
+                </td>
+                <td>
+                    @item.Salary
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <h2>Сотрудник с наивысшей зарплатой не найден</h2>
+}
