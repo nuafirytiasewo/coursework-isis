@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using coursework.Controllers.Helpers;
 using coursework.Models;
 
 namespace coursework.Controllers
@@ -17,12 +18,25 @@ namespace coursework.Controllers
         // GET: Positions
         public ActionResult Index()
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
+            
             return View(db.Positions.ToList());
         }
 
         // GET: Positions/Details/5
         public ActionResult Details(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -38,6 +52,12 @@ namespace coursework.Controllers
         // GET: Positions/Create
         public ActionResult Create()
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             return View();
         }
 
@@ -48,6 +68,12 @@ namespace coursework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Title,Description")] Positions positions)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (ModelState.IsValid)
             {
                 db.Positions.Add(positions);
@@ -61,6 +87,12 @@ namespace coursework.Controllers
         // GET: Positions/Edit/5
         public ActionResult Edit(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -80,6 +112,12 @@ namespace coursework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Title,Description")] Positions positions)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (ModelState.IsValid)
             {
                 db.Entry(positions).State = EntityState.Modified;
@@ -92,6 +130,12 @@ namespace coursework.Controllers
         // GET: Positions/Delete/5
         public ActionResult Delete(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -109,6 +153,12 @@ namespace coursework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             Positions positions = db.Positions.Find(id);
             db.Positions.Remove(positions);
             db.SaveChanges();

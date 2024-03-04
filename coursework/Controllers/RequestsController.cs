@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using coursework.Controllers.Helpers;
 using coursework.Models;
 
 namespace coursework.Controllers
@@ -17,6 +18,13 @@ namespace coursework.Controllers
         // GET: Requests
         public ActionResult Index()
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
+            
             var requests = db.Requests.Include(r => r.Clients).Include(r => r.Employees).Include(r => r.Services);
             return View(requests.ToList());
         }
@@ -24,6 +32,12 @@ namespace coursework.Controllers
         // GET: Requests/Details/5
         public ActionResult Details(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +53,12 @@ namespace coursework.Controllers
         // GET: Requests/Create
         public ActionResult Create()
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             ViewBag.ClientID = new SelectList(db.Clients, "ClientID", "LastName");
             ViewBag.EmployeeID = new SelectList(db.Employees, "EmployeeID", "LastName");
             ViewBag.ServiceID = new SelectList(db.Services, "ServiceID", "Name");
@@ -52,6 +72,12 @@ namespace coursework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "RequestID,OpenDate,Status,Description,ClientID,ServiceID,EmployeeID")] Requests requests)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (ModelState.IsValid)
             {
                 db.Requests.Add(requests);
@@ -68,6 +94,12 @@ namespace coursework.Controllers
         // GET: Requests/Edit/5
         public ActionResult Edit(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -90,6 +122,12 @@ namespace coursework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "RequestID,OpenDate,Status,Description,ClientID,ServiceID,EmployeeID")] Requests requests)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (ModelState.IsValid)
             {
                 db.Entry(requests).State = EntityState.Modified;
@@ -105,6 +143,12 @@ namespace coursework.Controllers
         // GET: Requests/Delete/5
         public ActionResult Delete(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -122,6 +166,12 @@ namespace coursework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             Requests requests = db.Requests.Find(id);
             db.Requests.Remove(requests);
             db.SaveChanges();

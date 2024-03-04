@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using coursework.Controllers.Helpers;
 using coursework.Models;
 
 namespace coursework.Controllers.Admin
@@ -17,6 +18,13 @@ namespace coursework.Controllers.Admin
         // GET: Users
         public ActionResult Index()
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
+            
             var users = db.Users.Include(u => u.Roles);
             return View(users.ToList());
         }
@@ -24,6 +32,12 @@ namespace coursework.Controllers.Admin
         // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +53,12 @@ namespace coursework.Controllers.Admin
         // GET: Users/Create
         public ActionResult Create()
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             ViewBag.RoleId = new SelectList(db.Roles, "Id", "Name");
             return View();
         }
@@ -50,6 +70,12 @@ namespace coursework.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Username,Password,RoleId,LastName,FirstName,Patronymic")] Users users)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (ModelState.IsValid)
             {
                 db.Users.Add(users);
@@ -64,6 +90,12 @@ namespace coursework.Controllers.Admin
         // GET: Users/Edit/5
         public ActionResult Edit(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,6 +116,12 @@ namespace coursework.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,Username,Password,RoleId,LastName,FirstName,Patronymic")] Users users)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (ModelState.IsValid)
             {
                 db.Entry(users).State = EntityState.Modified;
@@ -97,6 +135,12 @@ namespace coursework.Controllers.Admin
         // GET: Users/Delete/5
         public ActionResult Delete(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -114,6 +158,12 @@ namespace coursework.Controllers.Admin
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             Users users = db.Users.Find(id);
             db.Users.Remove(users);
             db.SaveChanges();

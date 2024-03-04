@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using coursework.Controllers.Helpers;
 using coursework.Models;
 
 namespace coursework.Controllers
@@ -17,6 +18,13 @@ namespace coursework.Controllers
         // GET: Employees
         public ActionResult Index()
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
+            
             var employees = db.Employees.Include(e => e.Positions);
             return View(employees.ToList());
         }
@@ -24,6 +32,12 @@ namespace coursework.Controllers
         // GET: Employees/Details/5
         public ActionResult Details(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +53,12 @@ namespace coursework.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             ViewBag.PositionID = new SelectList(db.Positions, "Id", "Title");
             return View();
         }
@@ -50,6 +70,12 @@ namespace coursework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EmployeeID,LastName,FirstName,Patronymic,PositionID,Salary")] Employees employees)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (ModelState.IsValid)
             {
                 db.Employees.Add(employees);
@@ -64,6 +90,12 @@ namespace coursework.Controllers
         // GET: Employees/Edit/5
         public ActionResult Edit(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,6 +116,12 @@ namespace coursework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "EmployeeID,LastName,FirstName,Patronymic,PositionID,Salary")] Employees employees)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (ModelState.IsValid)
             {
                 db.Entry(employees).State = EntityState.Modified;
@@ -97,6 +135,12 @@ namespace coursework.Controllers
         // GET: Employees/Delete/5
         public ActionResult Delete(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -114,6 +158,12 @@ namespace coursework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             Employees employees = db.Employees.Find(id);
             db.Employees.Remove(employees);
             db.SaveChanges();

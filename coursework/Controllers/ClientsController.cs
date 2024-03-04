@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using coursework.Controllers.Helpers;
 using coursework.Models;
 
 namespace coursework.Controllers
@@ -17,12 +18,22 @@ namespace coursework.Controllers
         // GET: Clients
         public ActionResult Index()
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
             return View(db.Clients.ToList());
         }
 
         // GET: Clients/Details/5
         public ActionResult Details(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -38,6 +49,11 @@ namespace coursework.Controllers
         // GET: Clients/Create
         public ActionResult Create()
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
             return View();
         }
 
@@ -48,6 +64,11 @@ namespace coursework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ClientID,LastName,FirstName,Patronymic,ContactInfo")] Clients clients)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
             if (ModelState.IsValid)
             {
                 db.Clients.Add(clients);
@@ -61,6 +82,11 @@ namespace coursework.Controllers
         // GET: Clients/Edit/5
         public ActionResult Edit(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -80,6 +106,11 @@ namespace coursework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ClientID,LastName,FirstName,Patronymic,ContactInfo")] Clients clients)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(clients).State = EntityState.Modified;
@@ -92,6 +123,11 @@ namespace coursework.Controllers
         // GET: Clients/Delete/5
         public ActionResult Delete(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -109,6 +145,11 @@ namespace coursework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
             Clients clients = db.Clients.Find(id);
             db.Clients.Remove(clients);
             db.SaveChanges();
