@@ -216,9 +216,11 @@
     <Compile Include="Controllers\Helpers\AuthenticationHelper.cs" />
     <Compile Include="Controllers\Admin\AdministrationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Models\ModelForSelection_1.cs" />
     <Compile Include="Controllers\MyAccountController.cs" />
     <Compile Include="Controllers\PositionsController.cs" />
     <Compile Include="Controllers\RequestsController.cs" />
+    <Compile Include="Controllers\SelectionsController.cs" />
     <Compile Include="Controllers\ServiceCategoriesController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -362,6 +364,7 @@
     <Content Include="Views\Requests\Details.cshtml" />
     <Content Include="Views\Requests\Edit.cshtml" />
     <Content Include="Views\Requests\Index.cshtml" />
+    <Content Include="Views\Selections\Index1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
