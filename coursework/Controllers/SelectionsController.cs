@@ -59,5 +59,34 @@ namespace coursework.Controllers
             return View(highestPaidEmployee);
 
         }
+        //3. Получение топ-3 сотрудников, которые выполнили наибольшее количество заявок в определенном месяце:
+        public ActionResult Index3(DateTime? specificMonth = null)
+        {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            var top3EmployeesByRequests = db.Requests
+                    .Where(r => r.OpenDate.Value.Year == specificMonth.Value.Year && r.OpenDate.Value.Month == specificMonth.Value.Month)
+                    .GroupBy(r => r.EmployeeID)
+                    .OrderByDescending(g => g.Count())
+                    .Take(3)
+                    .Select(g => new
+                    {
+                        EmployeeId = g.Key,
+                        Count = g.Count(),
+                        Employee = db.Employees.FirstOrDefault(e => e.EmployeeID == g.Key)
+                    })
+                    .Select(x => new ModelForSelection3
+                    {
+                        LastName = x.Employee.LastName,
+                        FirstName = x.Employee.FirstName,
+                        Patronymic = x.Employee.Patronymic,
+                        Count = x.Count,
+                    });
+
+            return View(top3EmployeesByRequests.ToList());
+        }
     }
 }
