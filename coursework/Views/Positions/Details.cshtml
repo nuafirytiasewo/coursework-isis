@@ -1,0 +1,34 @@
+﻿@model coursework.Models.Positions
+
+@{
+    ViewBag.Title = "Просмотр";
+}
+
+<h2>Просмотр</h2>
+
+<div>
+    <h4>Должность</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Название должности
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            Описание должности
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Вернуться назад", "Index")
+</p>

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using coursework.Controllers.Helpers;
 using coursework.Models;
 
 namespace coursework.Controllers
@@ -17,6 +18,13 @@ namespace coursework.Controllers
         // GET: Services
         public ActionResult Index()
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
+            
             var services = db.Services.Include(s => s.ServiceCategories);
             return View(services.ToList());
         }
@@ -24,6 +32,12 @@ namespace coursework.Controllers
         // GET: Services/Details/5
         public ActionResult Details(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -39,6 +53,12 @@ namespace coursework.Controllers
         // GET: Services/Create
         public ActionResult Create()
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             ViewBag.CategoryID = new SelectList(db.ServiceCategories, "CategoryID", "Name");
             return View();
         }
@@ -50,6 +70,12 @@ namespace coursework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ServiceID,Name,Description,Price,CategoryID")] Services services)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (ModelState.IsValid)
             {
                 db.Services.Add(services);
@@ -64,6 +90,12 @@ namespace coursework.Controllers
         // GET: Services/Edit/5
         public ActionResult Edit(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -84,6 +116,12 @@ namespace coursework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ServiceID,Name,Description,Price,CategoryID")] Services services)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (ModelState.IsValid)
             {
                 db.Entry(services).State = EntityState.Modified;
@@ -97,6 +135,12 @@ namespace coursework.Controllers
         // GET: Services/Delete/5
         public ActionResult Delete(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -114,6 +158,12 @@ namespace coursework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             Services services = db.Services.Find(id);
             db.Services.Remove(services);
             db.SaveChanges();

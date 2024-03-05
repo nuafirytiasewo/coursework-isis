@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using coursework.Controllers.Helpers;
 using coursework.Models;
 
 namespace coursework.Controllers
@@ -17,12 +18,26 @@ namespace coursework.Controllers
         // GET: Employees
         public ActionResult Index()
         {
-            return View(db.Employees.ToList());
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
+            
+            var employees = db.Employees.Include(e => e.Positions);
+            return View(employees.ToList());
         }
 
         // GET: Employees/Details/5
         public ActionResult Details(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -38,6 +53,13 @@ namespace coursework.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
+            ViewBag.PositionID = new SelectList(db.Positions, "Id", "Title");
             return View();
         }
 
@@ -46,8 +68,14 @@ namespace coursework.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmployeeID,FullName,Position,Salary")] Employees employees)
+        public ActionResult Create([Bind(Include = "EmployeeID,LastName,FirstName,Patronymic,PositionID,Salary")] Employees employees)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (ModelState.IsValid)
             {
                 db.Employees.Add(employees);
@@ -55,12 +83,19 @@ namespace coursework.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.PositionID = new SelectList(db.Positions, "Id", "Title", employees.PositionID);
             return View(employees);
         }
 
         // GET: Employees/Edit/5
         public ActionResult Edit(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -70,6 +105,7 @@ namespace coursework.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.PositionID = new SelectList(db.Positions, "Id", "Title", employees.PositionID);
             return View(employees);
         }
 
@@ -78,20 +114,33 @@ namespace coursework.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmployeeID,FullName,Position,Salary")] Employees employees)
+        public ActionResult Edit([Bind(Include = "EmployeeID,LastName,FirstName,Patronymic,PositionID,Salary")] Employees employees)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (ModelState.IsValid)
             {
                 db.Entry(employees).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.PositionID = new SelectList(db.Positions, "Id", "Title", employees.PositionID);
             return View(employees);
         }
 
         // GET: Employees/Delete/5
         public ActionResult Delete(int? id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -109,6 +158,12 @@ namespace coursework.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            
             Employees employees = db.Employees.Find(id);
             db.Employees.Remove(employees);
             db.SaveChanges();

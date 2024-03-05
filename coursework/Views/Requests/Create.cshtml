@@ -1,28 +1,19 @@
 ﻿@model coursework.Models.Requests
 
 @{
-    ViewBag.Title = "Добавление новой заявки";
+    ViewBag.Title = "Добавить";
 }
 
-<h2>Добавление новой заявки</h2>
+<h2>Добавить</h2>
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
-        <h4>Заявки</h4>
+        <h4>Заявка</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            <label class="control-label col-md-2" for="EmployeeID">Идентификатор заявки</label>
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RequestID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.RequestID, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
         <div class="form-group">
             <label class="control-label col-md-2" for="OpenDate">Дата открытия заявки</label>
             <div class="col-md-10">
@@ -48,7 +39,7 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2" for="ClientID">ФИО клиента</label>
+            <label class="control-label col-md-2" for="ClientID">Клиент</label>
             <div class="col-md-10">
                 @Html.DropDownList("ClientID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ClientID, "", new { @class = "text-danger" })
@@ -64,7 +55,7 @@
         </div>
 
         <div class="form-group">
-            <label class="control-label col-md-2" for="EmployeeID">ФИО работника</label>
+            <label class="control-label col-md-2" for="EmployeeID">Работник</label>
             <div class="col-md-10">
                 @Html.DropDownList("EmployeeID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.EmployeeID, "", new { @class = "text-danger" })
@@ -73,7 +64,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Добавление новой заявки" class="btn btn-primary" />
+                <input type="submit" value="Добавить" class="btn btn-primary" />
             </div>
         </div>
     </div>
@@ -82,7 +73,3 @@
 <div>
     @Html.ActionLink("Вернуться назад", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}

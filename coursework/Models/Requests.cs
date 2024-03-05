@@ -9,7 +9,6 @@ namespace coursework.Models
     public partial class Requests
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int RequestID { get; set; }
 
         [Column(TypeName = "date")]

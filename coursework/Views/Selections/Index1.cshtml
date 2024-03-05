@@ -1,0 +1,32 @@
+﻿﻿@model IEnumerable<coursework.Models.ModelForSelection_1>
+
+@{
+    ViewBag.Title = "Получение топ-5 клиентов, которые оставили наибольшее количество заявок";
+}
+
+<h2>
+    Получение топ-5 клиентов, которые оставили наибольшее количество заявок
+</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            ФИО Клиента
+        </th>
+        <th>
+            Кол-во оставленных заявок
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.LastName @item.FirstName @item.Patronymic
+            </td>
+            <td>
+                @item.Count
+            </td>
+        </tr>
+    }
+</table>

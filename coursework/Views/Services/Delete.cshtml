@@ -1,26 +1,18 @@
 ﻿@model coursework.Models.Services
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Удалить";
 }
 
-<h2>Delete</h2>
+<h2>Удалить</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Вы действительно хотите удалить это?</h3>
 <div>
-    <h4>Services</h4>
+    <h4>Услуга</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ServiceCategories.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ServiceCategories.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            Название
         </dt>
 
         <dd>
@@ -28,7 +20,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            Описание
         </dt>
 
         <dd>
@@ -36,11 +28,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Price)
+            Цена
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            Категория
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceCategories.Name)
         </dd>
 
     </dl>
@@ -49,7 +49,7 @@
         @Html.AntiForgeryToken()
 
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <input type="submit" value="Удалить" class="btn btn-danger" /> |
             @Html.ActionLink("Вернуться назад", "Index")
         </div>
     }

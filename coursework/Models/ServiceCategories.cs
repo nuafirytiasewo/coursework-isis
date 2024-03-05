@@ -15,7 +15,6 @@ namespace coursework.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int CategoryID { get; set; }
 
         [StringLength(50)]

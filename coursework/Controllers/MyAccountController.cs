@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
@@ -31,6 +32,17 @@ namespace coursework.Controllers
                     Session["UserId"] = result.Id;
                     Session["Username"] = result.Username;
                     Session["RoleId"] = result.RoleId;
+                    
+                    // Создаем запись в таблице журнала
+                    LoginLogs log = new LoginLogs
+                    {
+                        UserId = result.Id,
+                        Username = result.Username,
+                        LoginTime = DateTime.Now
+                    };
+                    db.LoginLogs.Add(log);
+                    db.SaveChanges();
+                    
                     //перенаправление на домашнюю страницу
                     return RedirectToAction("Index", "Home");
                 }

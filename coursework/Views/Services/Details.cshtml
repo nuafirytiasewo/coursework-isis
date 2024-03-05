@@ -1,25 +1,17 @@
 ﻿@model coursework.Models.Services
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Просмотр";
 }
 
-<h2>Details</h2>
+<h2>Просмотр</h2>
 
 <div>
-    <h4>Services</h4>
+    <h4>Услуга</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.ServiceCategories.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ServiceCategories.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
+            Название
         </dt>
 
         <dd>
@@ -27,7 +19,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Description)
+            Описание
         </dt>
 
         <dd>
@@ -35,16 +27,24 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Price)
+            Цена
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.Price)
         </dd>
 
+        <dt>
+            Категория
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServiceCategories.Name)
+        </dd>
+
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ServiceID }) |
+    @Html.ActionLink("Редактировать", "Edit", new { id = Model.ServiceID }) |
     @Html.ActionLink("Вернуться назад", "Index")
 </p>
