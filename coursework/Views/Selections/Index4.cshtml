@@ -1,0 +1,51 @@
+﻿@model IEnumerable<coursework.Models.ModelForSelection4>
+@{
+    ViewBag.Title = "Выборка всех заявок, у которых статус \"Обработка\", с информацией о клиентах, услугах и сотрудниках";
+}
+
+<h2>
+    Выборка всех заявок, у которых статус "Обработка", с информацией о клиентах, услугах и сотрудниках
+</h2>
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            ID Заявки
+        </th>
+        <th>
+            ФИО Клиента
+        </th>
+        <th>
+            Услуга
+        </th>
+        <th>
+            ФИО Сотрудника
+        </th>
+        <th>
+            Статус
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.RequestID
+            </td>
+            <td>
+                @item.ClientLastName @item.ClientFirstName @item.ClientPatronymic
+            </td>
+            <td>
+                @item.ServiceName
+            </td>
+            <td>
+                @item.EmployeeLastName @item.EmployeeFirstllName @item.EmployeePatronymic
+            </td>
+            <td>
+                @item.Status
+            </td>
+        </tr>
+    }
+</table>

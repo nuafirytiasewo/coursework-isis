@@ -1,0 +1,31 @@
+﻿@model IEnumerable<coursework.Models.ModelForSelection5>
+@{
+    ViewBag.Title = "Выборка должностей и количества сотрудников на каждой должности";
+}
+
+<h2>
+    Выборка должностей и количества сотрудников на каждой должности
+</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Должность
+        </th>
+        <th>
+            Количество сотрудников
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @item.PositionTitle
+            </td>
+            <td>
+                @item.EmployeeCount
+            </td>
+        </tr>
+    }
+</table>
