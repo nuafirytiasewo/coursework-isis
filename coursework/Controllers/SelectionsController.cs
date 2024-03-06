@@ -117,5 +117,26 @@ namespace coursework.Controllers
                     .ToList();
             return View(processingRequestsInfo);
         }
+
+        // 5. Выборка должностей и количества сотрудников на каждой должности
+        public ActionResult Index5()
+        {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            var positionEmployeeCount = db.Positions
+                .GroupJoin(db.Employees, pos => pos.Id, emp => emp.PositionID, (pos, emp) => new { Position = pos, Employees = emp })
+                .Select(x => new ModelForSelection5
+                {
+                    PositionTitle = x.Position.Title,
+                    EmployeeCount = x.Employees.Count()
+                })
+                .ToList();
+
+            return View(positionEmployeeCount);
+        }
+
     }
 }
