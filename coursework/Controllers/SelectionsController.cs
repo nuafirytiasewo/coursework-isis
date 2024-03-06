@@ -88,5 +88,34 @@ namespace coursework.Controllers
 
             return View(top3EmployeesByRequests.ToList());
         }
+
+        // 4. Выборка всех заявок, у которых статус "Обработка", с информацией о клиентах, услугах и сотрудниках
+        public ActionResult Index4()
+        {
+            // Проверяем, аутентифицирован ли пользователь
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            {
+                return RedirectToAction("Login", "MyAccount");
+            }
+            var processingRequestsInfo = db.Requests
+                    .Where(r => r.Status == "Обработка")
+                    .Join(db.Clients, r => r.ClientID, c => c.ClientID, (r, c) => new { Request = r, Client = c })
+                    .Join(db.Services, rc => rc.Request.ServiceID, s => s.ServiceID, (rc, s) => new { rc.Request, rc.Client, Service = s })
+                    .Join(db.Employees, rcs => rcs.Request.EmployeeID, e => e.EmployeeID, (rcs, e) => new { rcs.Request, rcs.Client, rcs.Service, Employee = e })
+                    .Select(x => new ModelForSelection4
+                    {
+                        RequestID = x.Request.RequestID,
+                        ClientLastName = x.Client.LastName,
+                        ClientFirstName = x.Client.FirstName,
+                        ClientPatronymic = x.Client.Patronymic,
+                        ServiceName = x.Service.Name,
+                        EmployeeLastName = x.Employee.LastName,
+                        EmployeeFirstllName = x.Employee.FirstName,
+                        EmployeePatronymic = x.Employee.Patronymic,
+                        Status = x.Request.Status
+                    })
+                    .ToList();
+            return View(processingRequestsInfo);
+        }
     }
 }
