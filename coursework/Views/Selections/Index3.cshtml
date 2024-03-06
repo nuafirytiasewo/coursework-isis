@@ -4,12 +4,12 @@
 }
 
 <h2>
-    Получение топ-3 сотрудников, которые выполнили наибольшее количество заявок в определенном месяце
+    Получение топ-3 сотрудников, которые взяли наибольшее количество заявок в определенном месяце
 </h2>
 
 <form method="get">
     <div>
-        <label for="specificMonth">До:</label>
+        <label for="specificMonth">Дата:</label>
         <input type="date" id="specificMonth" name="specificMonth" value="@ViewBag.specificMonth?.ToString(" dd-MM-yyyy")" />
     </div>
     <button type="submit">Поиск</button>
