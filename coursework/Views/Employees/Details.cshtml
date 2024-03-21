@@ -5,54 +5,80 @@
 }
 
 <h2>Просмотр</h2>
+@if (ViewBag.access)
+{
+    <div>
+        <h4>Работник</h4>
+        <hr />
+        <dl class="dl-horizontal">
 
-<div>
-    <h4>Работник</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Фамилия работника
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+            <dt>
+                Фамилия работника
+            </dt>
 
-        <dt>
-            Имя работника
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            <dt>
+                Имя работника
+            </dt>
 
-        <dt>
-            Отчество работника
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Patronymic)
-        </dd>
+            <dt>
+                Отчество работника
+            </dt>
 
-        <dt>
-            Должность
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Patronymic)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Positions.Title)
-        </dd>
+            <dt>
+                Логин
+            </dt>
 
-        <dt>
-            Зарплата
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Salary)
-        </dd>
+            <dt>
+                Пароль
+            </dt>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Редактировать", "Edit", new { id = Model.EmployeeID }) |
-    @Html.ActionLink("Вернуться назад", "Index")
-</p>
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
+
+            <dt>
+                Должность
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Roles.Name)
+            </dd>
+
+            <dt>
+                Зарплата
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Salary)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Редактировать", "Edit", new { id = Model.EmployeeID }) |
+        @Html.ActionLink("Вернуться назад", "Index")
+    </p>
+}
+else
+{
+    <div>
+        <p class="lead" style="color: red;">@ViewBag.Message</p>
+    </div>
+}

@@ -5,11 +5,8 @@
 }
 
 <h2>Логи</h2>
-@if (ViewBag.userRole == 1)
+@if (ViewBag.access)
 {
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
     <table class="table">
         <tr>
             <th>
@@ -27,32 +24,27 @@
             <th>
                 Время входа в систему
             </th>
-            <th></th>
         </tr>
 
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Users.Username)
+                    @Html.DisplayFor(modelItem => item.Employees.Username)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Users.LastName)
+                    @Html.DisplayFor(modelItem => item.Employees.LastName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Users.FirstName)
+                    @Html.DisplayFor(modelItem => item.Employees.FirstName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Users.Patronymic)
+                    @Html.DisplayFor(modelItem => item.Employees.Patronymic)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.LoginTime)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                
             </tr>
         }
 

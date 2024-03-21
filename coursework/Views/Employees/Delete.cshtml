@@ -5,60 +5,85 @@
 }
 
 <h2>Удалить</h2>
+@if (ViewBag.access)
+{
+    <h3>Вы действительно хотите удалить это?</h3>
+    <div>
+        <h4>Работник</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                Фамилия работника
+            </dt>
 
-<h3>Вы действительно хотите удалить это?</h3>
-<div>
-    <h4>Работник</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            Фамилия работника
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+            <dt>
+                Имя работника
+            </dt>
 
-        <dt>
-            Имя работника
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            <dt>
+                Отчество работника
+            </dt>
 
-        <dt>
-            Отчество работника
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Patronymic)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Patronymic)
-        </dd>
+            <dt>
+                Логин
+            </dt>
 
-        <dt>
-            Должность
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Positions.Title)
-        </dd>
+            <dt>
+                Пароль
+            </dt>
 
-        <dt>
-            Зарплата
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Password)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Salary)
-        </dd>
+            <dt>
+                Должность
+            </dt>
 
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.Roles.Name)
+            </dd>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+            <dt>
+                Зарплата
+            </dt>
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Удалить" class="btn btn-danger" /> |
-            @Html.ActionLink("Вернуться назад", "Index")
-        </div>
-    }
-</div>
+            <dd>
+                @Html.DisplayFor(model => model.Salary)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Удалить" class="btn btn-danger" /> |
+                @Html.ActionLink("Вернуться назад", "Index")
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div>
+        <p class="lead" style="color: red;">@ViewBag.Message</p>
+    </div>
+}

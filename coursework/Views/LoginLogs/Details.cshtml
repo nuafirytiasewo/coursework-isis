@@ -1,21 +1,21 @@
 ﻿@model coursework.Models.LoginLogs
 
 @{
-    ViewBag.Title = "Просмотр";
+    ViewBag.Title = "Details";
 }
 
-<h2>Просмотр</h2>
+<h2>Details</h2>
 
 <div>
     <h4>LoginLogs</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.Users.Username)
+            @Html.DisplayNameFor(model => model.Employees.LastName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Users.Username)
+            @Html.DisplayFor(model => model.Employees.LastName)
         </dd>
 
         <dt>
@@ -37,6 +37,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Редактировать", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Вернуться назад", "Index")
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
 </p>

@@ -15,7 +15,7 @@ namespace coursework.Controllers
             ViewBag.Title = "Домашняя страница";
 
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 5))
             {
                 return RedirectToAction("Login", "MyAccount");
             }

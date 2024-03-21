@@ -5,35 +5,44 @@
 }
 
 <h2>Категории услуг</h2>
+@if (ViewBag.access)
+{
+    <p>
+        @Html.ActionLink("Добавить новую запись", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Название
+            </th>
+            <th>
+                Описание
+            </th>
+            <th></th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Добавить новую запись", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Название
-        </th>
-        <th>
-            Описание
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.CategoryID }) |
+                    @Html.ActionLink("Просмотр", "Details", new { id = item.CategoryID }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.CategoryID })
+                </td>
+            </tr>
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Редактировать", "Edit", new { id=item.CategoryID }) |
-            @Html.ActionLink("Просмотр", "Details", new { id=item.CategoryID }) |
-            @Html.ActionLink("Удалить", "Delete", new { id=item.CategoryID })
-        </td>
-    </tr>
+    </table>
 }
-
-</table>
+else
+{
+    <div>
+        <p class="lead" style="color: red;">@ViewBag.Message</p>
+    </div>
+}

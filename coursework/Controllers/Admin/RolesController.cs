@@ -19,12 +19,12 @@ namespace coursework.Controllers.Admin
         public ActionResult Index()
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 1))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
-            
-            
+
+
             return View(db.Roles.ToList());
         }
 
@@ -32,11 +32,11 @@ namespace coursework.Controllers.Admin
         public ActionResult Details(int? id)
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 1))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
-            
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -53,11 +53,11 @@ namespace coursework.Controllers.Admin
         public ActionResult Create()
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 1))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
-            
+
             return View();
         }
 
@@ -69,11 +69,11 @@ namespace coursework.Controllers.Admin
         public ActionResult Create([Bind(Include = "Id,Name,Description")] Roles roles)
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 1))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
-            
+
             if (ModelState.IsValid)
             {
                 db.Roles.Add(roles);
@@ -88,11 +88,11 @@ namespace coursework.Controllers.Admin
         public ActionResult Edit(int? id)
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 1))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
-            
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -113,7 +113,7 @@ namespace coursework.Controllers.Admin
         public ActionResult Edit([Bind(Include = "Id,Name,Description")] Roles roles)
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 1))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
@@ -135,11 +135,11 @@ namespace coursework.Controllers.Admin
         public ActionResult Delete(int? id)
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 1))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
-            
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -158,7 +158,7 @@ namespace coursework.Controllers.Admin
         public ActionResult DeleteConfirmed(int id)
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 1))
             {
                 return RedirectToAction("Login", "MyAccount");
             }

@@ -3,30 +3,38 @@
 @{
     ViewBag.Title = "Получение топ-5 клиентов, которые оставили наибольшее количество заявок";
 }
+@if (ViewBag.access)
+{
+    <h2>
+        Получение топ-5 клиентов, которые оставили наибольшее количество заявок
+    </h2>
 
-<h2>
-    Получение топ-5 клиентов, которые оставили наибольшее количество заявок
-</h2>
-
-<table class="table">
-    <tr>
-        <th>
-            ФИО Клиента
-        </th>
-        <th>
-            Кол-во оставленных заявок
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <table class="table">
         <tr>
-            <td>
-                @item.LastName @item.FirstName @item.Patronymic
-            </td>
-            <td>
-                @item.Count
-            </td>
+            <th>
+                ФИО Клиента
+            </th>
+            <th>
+                Кол-во оставленных заявок
+            </th>
         </tr>
-    }
-</table>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.LastName @item.FirstName @item.Patronymic
+                </td>
+                <td>
+                    @item.Count
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div>
+        <p class="lead" style="color: red;">@ViewBag.Message</p>
+    </div>
+}

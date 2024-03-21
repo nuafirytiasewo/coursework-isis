@@ -11,6 +11,7 @@ namespace coursework.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employees()
         {
+            LoginLogs = new HashSet<LoginLogs>();
             Requests = new HashSet<Requests>();
         }
 
@@ -26,11 +27,20 @@ namespace coursework.Models
         [StringLength(40)]
         public string Patronymic { get; set; }
 
-        public int? PositionID { get; set; }
+        [StringLength(50)]
+        public string Username { get; set; }
+
+        [StringLength(50)]
+        public string Password { get; set; }
+
+        public int? RoleID { get; set; }
 
         public decimal? Salary { get; set; }
 
-        public virtual Positions Positions { get; set; }
+        public virtual Roles Roles { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LoginLogs> LoginLogs { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Requests> Requests { get; set; }

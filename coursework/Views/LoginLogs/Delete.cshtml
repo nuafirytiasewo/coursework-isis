@@ -5,44 +5,53 @@
 }
 
 <h2>Delete</h2>
+@if (ViewBag.access)
+{
+    <h3>Are you sure you want to delete this?</h3>
+    <div>
+        <h4>LoginLogs</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Employees.LastName)
+            </dt>
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>LoginLogs</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Users.Username)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Employees.LastName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Users.Username)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Username)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Username)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LoginTime)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LoginTime)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LoginTime)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.LoginTime)
-        </dd>
+        </dl>
 
-    </dl>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" /> |
-            @Html.ActionLink("Вернуться назад", "Index")
-        </div>
-    }
-</div>
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-default" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+}
+else
+{
+    <div>
+        <p class="lead" style="color: red;">@ViewBag.Message</p>
+    </div>
+}

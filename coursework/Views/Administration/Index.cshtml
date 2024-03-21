@@ -1,5 +1,5 @@
 ﻿<main>
-    @if (ViewBag.userRole == 1)
+    @if (ViewBag.access)
     {
         <section class="row" aria-labelledby="aspnetTitle">
             <h1 id="aspnetTitle">Админ панель</h1>
@@ -9,7 +9,7 @@
             <section class="col-md-4" aria-labelledby="tablesTitle">
                 <h2 id="tablesTitle">Таблицы пользователей</h2>
                 <p>Здесь хранятся таблицы к базе данных пользователей, чтобы можно было проще управлять ими (создавать/редактировать/удалять записи - CRUD).</p>
-                <p><a class="btn btn-outline-dark" href="../Users/Index">Пользователи сайта &raquo;</a></p>
+                <p><a class="btn btn-outline-dark" href="../Employees/Index">Работники &raquo;</a></p>
                 <p><a class="btn btn-outline-dark" href="../Roles/Index">Роли &raquo;</a></p>
             </section>
         </div>

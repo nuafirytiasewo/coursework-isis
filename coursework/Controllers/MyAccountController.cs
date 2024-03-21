@@ -24,19 +24,19 @@ namespace coursework.Controllers
             using (ADOModelDB db=new ADOModelDB())
             {
                 //ищем в базе данных такие же значения логина и пароля
-                var result = db.Users.FirstOrDefault(x => x.Username == user.Username && x.Password == user.Password);
+                var result = db.Employees.FirstOrDefault(x => x.Username == user.Username && x.Password == user.Password);
                 //если нашли то
                 if (result != null)
                 {
                     //запись в сессию(куки) переменной с логином и ролью
-                    Session["UserId"] = result.Id;
+                    Session["UserId"] = result.EmployeeID;
                     Session["Username"] = result.Username;
-                    Session["RoleId"] = result.RoleId;
+                    Session["RoleId"] = result.RoleID;
                     
                     // Создаем запись в таблице журнала
                     LoginLogs log = new LoginLogs
                     {
-                        UserId = result.Id,
+                        EmployeeID = result.EmployeeID,
                         Username = result.Username,
                         LoginTime = DateTime.Now
                     };

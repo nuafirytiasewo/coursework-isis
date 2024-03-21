@@ -17,7 +17,7 @@ namespace coursework.Controllers.Admin
             ViewBag.Title = "Админ панель";
 
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, true))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 1))
             {
                 return RedirectToAction("Login", "MyAccount");
             }

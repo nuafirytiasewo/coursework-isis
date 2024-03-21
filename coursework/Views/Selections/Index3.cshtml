@@ -2,38 +2,46 @@
 @{
     ViewBag.Title = "Получение топ-3 сотрудников, которые выполнили наибольшее количество заявок в определенном месяце";
 }
+@if (ViewBag.access)
+{
+    <h2>
+        Получение топ-3 сотрудников, которые взяли наибольшее количество заявок в определенном месяце
+    </h2>
 
-<h2>
-    Получение топ-3 сотрудников, которые взяли наибольшее количество заявок в определенном месяце
-</h2>
+    <form method="get">
+        <div>
+            <label for="specificMonth">Дата:</label>
+            <input type="date" id="specificMonth" name="specificMonth" value="@ViewBag.specificMonth?.ToString(" dd-MM-yyyy")" />
+        </div>
+        <button type="submit">Поиск</button>
+    </form>
 
-<form method="get">
-    <div>
-        <label for="specificMonth">Дата:</label>
-        <input type="date" id="specificMonth" name="specificMonth" value="@ViewBag.specificMonth?.ToString(" dd-MM-yyyy")" />
-    </div>
-    <button type="submit">Поиск</button>
-</form>
-
-<table class="table">
-    <tr>
-        <th>
-            ФИО работника
-        </th>
-        <th>
-            Количество заявок
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+    <table class="table">
         <tr>
-            <td>
-                @item.LastName @item.FirstName @item.Patronymic
-            </td>
-            <td>
-                @item.Count
-            </td>
+            <th>
+                ФИО работника
+            </th>
+            <th>
+                Количество заявок
+            </th>
         </tr>
-    }
-</table>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @item.LastName @item.FirstName @item.Patronymic
+                </td>
+                <td>
+                    @item.Count
+                </td>
+            </tr>
+        }
+    </table>
+}
+else
+{
+    <div>
+        <p class="lead" style="color: red;">@ViewBag.Message</p>
+    </div>
+}

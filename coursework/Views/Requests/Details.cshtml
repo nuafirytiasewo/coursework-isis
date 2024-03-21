@@ -5,63 +5,71 @@
 }
 
 <h2>Просмотр</h2>
+@if (ViewBag.access)
+{
+    <div>
+        <h4>Заявка</h4>
+        <hr />
+        <dl class="dl-horizontal">
 
-<div>
-    <h4>Заявка</h4>
-    <hr />
-    <dl class="dl-horizontal">
+            <dt>
+                Дата открытия заявки
+            </dt>
 
-        <dt>
-            Дата открытия заявки
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.OpenDate)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.OpenDate)
-        </dd>
+            <dt>
+                Статус заявки
+            </dt>
 
-        <dt>
-            Статус заявки
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Status)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
+            <dt>
+                Описание
+            </dt>
 
-        <dt>
-            Описание
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Description)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+            <dt>
+                Клиент
+            </dt>
 
-        <dt>
-            Клиент
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Clients.LastName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Clients.LastName)
-        </dd>
+            <dt>
+                Услуга
+            </dt>
 
-        <dt>
-            Услуга
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Services.Name)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Services.Name)
-        </dd>
+            <dt>
+                Работник
+            </dt>
 
-        <dt>
-            Работник
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Employees.LastName)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Employees.LastName)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Редактировать", "Edit", new { id = Model.RequestID }) |
-    @Html.ActionLink("Вернуться назад", "Index")
-</p>
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Редактировать", "Edit", new { id = Model.RequestID }) |
+        @Html.ActionLink("Вернуться назад", "Index")
+    </p>
+}
+else
+{
+    <div>
+        <p class="lead" style="color: red;">@ViewBag.Message</p>
+    </div>
+}

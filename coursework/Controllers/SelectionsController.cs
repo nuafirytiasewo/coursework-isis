@@ -15,7 +15,7 @@ namespace coursework.Controllers
         public ActionResult Index1()
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 5))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
@@ -41,7 +41,7 @@ namespace coursework.Controllers
         public ActionResult Index2()
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 1))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
@@ -63,7 +63,7 @@ namespace coursework.Controllers
         public ActionResult Index3(DateTime? specificMonth = null)
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 2))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
@@ -93,7 +93,7 @@ namespace coursework.Controllers
         public ActionResult Index4()
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 5))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
@@ -122,15 +122,15 @@ namespace coursework.Controllers
         public ActionResult Index5()
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 1))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
-            var positionEmployeeCount = db.Positions
-                .GroupJoin(db.Employees, pos => pos.Id, emp => emp.PositionID, (pos, emp) => new { Position = pos, Employees = emp })
+            var positionEmployeeCount = db.Roles
+                .GroupJoin(db.Employees, pos => pos.Id, emp => emp.RoleID, (pos, emp) => new { Position = pos, Employees = emp })
                 .Select(x => new ModelForSelection5
                 {
-                    PositionTitle = x.Position.Title,
+                    PositionTitle = x.Position.Name,
                     EmployeeCount = x.Employees.Count()
                 })
                 .ToList();

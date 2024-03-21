@@ -3,37 +3,45 @@
 @{
     ViewBag.Title = "Выбор информации о сотруднике с наивысшей зарплатой";
 }
-
-<h2>
-    Выбор информации о сотруднике с наивысшей зарплатой
-</h2>
-
-@if (Model != null)
+@if (ViewBag.access)
 {
-    <table class="table">
-        <tr>
-            <th>
-                ФИО сотрудника
-            </th>
-            <th>
-                Зарплата
-            </th>
-        </tr>
+    <h2>
+        Выбор информации о сотруднике с наивысшей зарплатой
+    </h2>
 
-        @foreach (var item in Model)
-        {
+    if (Model != null)
+    {
+        <table class="table">
             <tr>
-                <td>
-                    @item.LastName @item.FirstName @item.Patronymic
-                </td>
-                <td>
-                    @item.Salary
-                </td>
+                <th>
+                    ФИО сотрудника
+                </th>
+                <th>
+                    Зарплата
+                </th>
             </tr>
-        }
-    </table>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.LastName @item.FirstName @item.Patronymic
+                    </td>
+                    <td>
+                        @item.Salary
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <h2>Сотрудник с наивысшей зарплатой не найден</h2>
+    }
 }
 else
 {
-    <h2>Сотрудник с наивысшей зарплатой не найден</h2>
+    <div>
+        <p class="lead" style="color: red;">@ViewBag.Message</p>
+    </div>
 }

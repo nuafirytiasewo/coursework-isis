@@ -19,7 +19,7 @@ namespace coursework.Controllers
         public ActionResult Index()
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 5))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
@@ -30,7 +30,7 @@ namespace coursework.Controllers
         public ActionResult Details(int? id)
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 5))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
@@ -50,7 +50,7 @@ namespace coursework.Controllers
         public ActionResult Create()
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 2))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
@@ -65,7 +65,7 @@ namespace coursework.Controllers
         public ActionResult Create([Bind(Include = "ClientID,LastName,FirstName,Patronymic,ContactInfo")] Clients clients)
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 2))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
@@ -83,7 +83,7 @@ namespace coursework.Controllers
         public ActionResult Edit(int? id)
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 2))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
@@ -107,7 +107,7 @@ namespace coursework.Controllers
         public ActionResult Edit([Bind(Include = "ClientID,LastName,FirstName,Patronymic,ContactInfo")] Clients clients)
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 2))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
@@ -124,7 +124,7 @@ namespace coursework.Controllers
         public ActionResult Delete(int? id)
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 1))
             {
                 return RedirectToAction("Login", "MyAccount");
             }
@@ -146,7 +146,7 @@ namespace coursework.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             // Проверяем, аутентифицирован ли пользователь
-            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, false))
+            if (!AuthenticationHelper.CheckAuthentication(Session, ViewBag, 1))
             {
                 return RedirectToAction("Login", "MyAccount");
             }

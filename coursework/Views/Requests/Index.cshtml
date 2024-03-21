@@ -5,59 +5,68 @@
 }
 
 <h2>Заявки</h2>
+@if (ViewBag.access)
+{
+    <p>
+        @Html.ActionLink("Добавить новую запись", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                Дата открытия заявки
+            </th>
+            <th>
+                Статус заявки
+            </th>
+            <th>
+                Описание
+            </th>
+            <th>
+                Клиент
+            </th>
+            <th>
+                Услуга
+            </th>
+            <th>
+                Работник
+            </th>
+            <th></th>
+        </tr>
 
-<p>
-    @Html.ActionLink("Добавить новую запись", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Дата открытия заявки
-        </th>
-        <th>
-            Статус заявки
-        </th>
-        <th>
-            Описание
-        </th>
-        <th>
-            Клиент
-        </th>
-        <th>
-            Услуга
-        </th>
-        <th>
-            Работник
-        </th>
-        <th></th>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OpenDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Clients.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Services.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employees.LastName)
+                </td>
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.RequestID }) |
+                    @Html.ActionLink("Просмотр", "Details", new { id = item.RequestID }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.RequestID })
+                </td>
+            </tr>
+        }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.OpenDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Clients.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Services.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Employees.LastName)
-        </td>
-        <td>
-            @Html.ActionLink("Редактировать", "Edit", new { id = item.RequestID }) |
-            @Html.ActionLink("Просмотр", "Details", new { id = item.RequestID }) |
-            @Html.ActionLink("Удалить", "Delete", new { id = item.RequestID })
-        </td>
-    </tr>
+    </table>
 }
-
-</table>
+else
+{
+    <div>
+        <p class="lead" style="color: red;">@ViewBag.Message</p>
+    </div>
+}
