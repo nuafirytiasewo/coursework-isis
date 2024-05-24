@@ -1,0 +1,1 @@
+для того чтобы запустить проект нужно заменить строку подключения: Data Source=YOURCOMPUTER\SQLEXPRESS;Initial Catalog=coursework;Integrated Security=True;Multiple Active Result Sets=True;Trust Server Certificate=True
